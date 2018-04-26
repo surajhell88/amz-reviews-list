@@ -1,28 +1,59 @@
 .App {
-  text-align: center;
+	display: flex;
+	justify-content: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.Container {
+	margin-top: 20px;
+	width: 980px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.Action {
+	display: flex;
+	padding-bottom: 10px;
 }
 
-.App-title {
-  font-size: 1.5em;
+.Action-Input {
+	flex-grow: 1;
+	border: 1px solid #ddd;
+	border-radius: 25px;
+	display: flex;
 }
 
-.App-intro {
-  font-size: large;
+.Input {
+	flex-grow: 1;
+	padding: 6px 12px;
+	outline: none;
+	border: 0;
+	background-color: transparent;
+	font-size: 12px;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.Input-Text {
+	background-image: url("https://cdn.rawgit.com/marcobiedermann/playground/master/ui/search/simple-search-bar/dist/assets/images/magnifier.svg");
+	background-position: 99%;
+	background-repeat: no-repeat;
+	background-size: 1.5em;
+}
+
+.Action-Select {
+	padding: 4px;
+}
+
+.Mr-10 {
+	margin-right: 10px;
+}
+
+.Star-Filter {
+	display: flex;
+}
+
+.Star-Container {
+	display: flex;
+	align-items: center;
+	padding-right: 10px;
+}
+
+.Star-Number {
+	padding-right: 5px;
 }
