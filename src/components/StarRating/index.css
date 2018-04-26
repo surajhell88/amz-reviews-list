@@ -1,0 +1,18 @@
+.Star-Filter {
+	display: flex;
+}
+
+.Star-Container {
+	display: flex;
+	align-items: center;
+	padding-right: 10px;
+}
+
+.Star-Number {
+	padding-right: 5px;
+}
+
+.Star-Label {
+	display: flex;
+	align-items: center;
+}

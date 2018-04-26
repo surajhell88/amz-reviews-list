@@ -1,5 +1,8 @@
 import React from 'react';
+
 import StartSVG from "./star-svg";
+
+import './index.css';
 
 const StarRating = (props) => {
   	const { rating, onRateChange } = props;

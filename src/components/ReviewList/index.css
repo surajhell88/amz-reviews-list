@@ -1,0 +1,32 @@
+.Review-List {
+	list-style: none;
+}
+
+.Review-Item {
+	margin-bottom: 12px;
+}
+
+.Review-Header {
+	display: flex;
+	align-items: center;
+	padding-bottom: 20px;
+}
+
+.Review-Container {
+	border: 1px solid #ddd;
+	border-radius: 15px;
+	padding: 24px;
+}
+
+.Review-User-Img {
+	width: 45px;
+	height: 45px;
+	background-color: #ddd;
+}
+
+.Review-Product-Title {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
