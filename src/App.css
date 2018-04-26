@@ -61,3 +61,8 @@
 .Star-Number {
 	padding-right: 5px;
 }
+
+.Star-Label {
+	display: flex;
+	align-items: center;
+}
