@@ -46,6 +46,33 @@ class App extends Component {
 							/>
 						</div>
 					</div>
+					<div className="List-Container">
+						<ul className="Review-List">
+							<li className="Review-Item">
+								<div className="Review-Container">
+									<div className="Review-Header">
+										<div className="Review-User-Img Mr-20"></div>
+										<div className="Review-Date Mr-40">
+											<h6 className="Text-Gray">Date</h6>
+											<h4>12.12.2017</h4>
+										</div>
+										<div className="Review-Ratings Mr-40">
+											<h6 className="Text-Gray">Stars</h6>
+											<h4>12.12.2017</h4>
+										</div>
+										<div className="Review-Product">
+											<h6 className="Text-Gray">Seller</h6>
+											<h4>12.12.2017</h4>
+										</div>
+									</div>
+									<div className="Review-Info">
+										<h4 className="Review-Title">Review Title</h4>
+										<p className="Review-Description Text-Gray">Lorem ipsum dolor sit amet, officiis adipiscing te sed, ad vim suas ullamcorper. Ex ius blandit torquatos cotidieque. Postea labores ei eum. Cu has nibh voluptatum. Eam an volutpat repudiandae.</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		);

@@ -40,10 +40,6 @@
 	padding: 4px;
 }
 
-.Mr-10 {
-	margin-right: 10px;
-}
-
 .Filter {
 	padding: 12px;
 }
@@ -65,4 +61,26 @@
 .Star-Label {
 	display: flex;
 	align-items: center;
+}
+
+.Review-List {
+	list-style: none;
+}
+
+.Review-Header {
+	display: flex;
+	align-items: center;
+	padding-bottom: 20px;
+}
+
+.Review-Container {
+	border: 1px solid #ddd;
+	border-radius: 15px;
+	padding: 24px;
+}
+
+.Review-User-Img {
+	width: 45px;
+	height: 45px;
+	background-color: #ddd;
 }

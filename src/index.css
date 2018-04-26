@@ -1,5 +1,5 @@
 :root {
-  --gray-color: #ddd;
+  --gray-color: #88949c;
   --primary-color: #43b5ff;
   --secondary-color: #43b5ff30;
   --gray-border: 1px solid var(--gray-color);
@@ -11,8 +11,23 @@ body {
   font-family: sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, p, ul {
 	margin:0;
 	padding:0;
-	color: var(--gray-color);
+}
+
+.Text-Gray {
+  color: var(--gray-color);
+}
+
+.Mr-10 {
+  margin-right: 10px;
+}
+
+.Mr-20 {
+  margin-right: 20px;
+}
+
+.Mr-40 {
+  margin-right: 80px;
 }
