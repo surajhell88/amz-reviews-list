@@ -43,3 +43,9 @@
 .Filter {
 	padding: 12px;
 }
+
+.Fetching-Reviews {
+	margin-top: 20px;
+	color: gray;
+	text-align: center;
+}

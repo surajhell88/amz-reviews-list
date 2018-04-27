@@ -10,22 +10,38 @@ import './App.css';
 class App extends Component {
 	state = {
 		rating: 0,
+		fetchingReviews: false,
+		originalList: [],
 		reviewList: []
 	}
 	onRateChange = (rating) => {
 		this.setState({
 			rating,
+			reviewList: this.state.originalList.filter(
+				review => review.stars >= rating
+			)
 		});
 	}
 	componentDidMount() {
-		callApi("/reviews/1").then(res => {
-			console.log(res.data.reviews); // eslint-disable-line
-			this.setState({
-				reviewList: res.data.reviews,
+		this.setState({
+			fetchingReviews: true,
+		}, () => {
+			callApi("/reviews/1").then(res => {
+				console.log(res.data.reviews); // eslint-disable-line
+				this.setState({
+					fetchingReviews: false,
+					reviewList: res.data.reviews,
+					originalList: res.data.reviews
+				});
 			});
 		});
 	}
 	render() {
+		const {
+			rating,
+			reviewList,
+			fetchingReviews
+		} = this.state;
 		return (
 			<div className="App">
 				<div className="Container">
@@ -55,13 +71,19 @@ class App extends Component {
 						<div className="Filter">
 							<h4>Filter By:</h4>
 							<StartRating
-								rating={this.state.rating}
+								rating={rating}
 								onRateChange={this.onRateChange}
 							/>
 						</div>
 					</div>
 					<div className="List-Container">
-						<ReviewList listData={this.state.reviewList} />
+						{
+							fetchingReviews ?
+								<h4 className="Fetching-Reviews">
+									Fetching Reviews...
+								</h4> :
+								<ReviewList listData={reviewList} />
+						}
 					</div>
 				</div>
 			</div>
