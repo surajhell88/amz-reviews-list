@@ -2,7 +2,7 @@
 	list-style: none;
 }
 
-.Review-Item {
+.Review-Group {
 	margin-bottom: 12px;
 }
 
@@ -16,6 +16,7 @@
 	border: 1px solid #ddd;
 	border-radius: 15px;
 	padding: 24px;
+	margin-bottom: 12px;
 }
 
 .Review-User-Img {

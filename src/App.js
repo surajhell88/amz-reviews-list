@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
+import moment from 'moment';
 
 import StartRating from "./components/StarRating";
 import ReviewList from "./components/ReviewList";
@@ -30,14 +32,41 @@ class App extends Component {
 	filterByStars = (list, rating = 0) => rating ? list.filter(
 		({ stars }) => stars >= rating
 	) : list
+	groupReviews = (groupBy, list) => {
+		if (!groupBy || groupBy === '') return list;
+		switch (groupBy) {
+			case 'month':
+				return _.groupBy(list, ({ reviewCreated }) => {
+					return moment(reviewCreated).startOf('month').format('MMM, YYYY');
+				});
+			case 'week':
+				return _.groupBy(list, ({ reviewCreated }) => {
+					return moment(reviewCreated).startOf('week').format('DD.MM') + ' - ' + moment(reviewCreated).endOf('week').format('DD.MM');
+				});
+			case 'day':
+				return _.groupBy(list, ({ reviewCreated }) => {
+					return moment(reviewCreated).startOf('day').format('D.MM.YYYY');
+				});
+			default:
+				return list;
+		}
+	}
 	filterReviews = () => {
-		const { searchKey, rating, originalList } = this.state;
-		const reviewList = this.filterByStars(
-			this.filterBySearch(
-				originalList,
-				searchKey
+		const {
+			searchKey,
+			rating,
+			originalList,
+			groupBy,
+		} = this.state;
+		const reviewList = this.groupReviews(groupBy,
+			this.filterByStars(
+				this.filterBySearch(
+					originalList,
+					searchKey
+				),
+				rating
 			)
-		, rating);
+		);
 		this.setState({
 			reviewList,
 		});
