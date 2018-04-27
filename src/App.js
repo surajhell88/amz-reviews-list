@@ -51,21 +51,23 @@ class App extends Component {
 				return list;
 		}
 	}
+	sortReviews = (sortBy, list) => _.orderBy(list, ['reviewCreated'], sortBy)
 	filterReviews = () => {
 		const {
 			searchKey,
 			rating,
 			originalList,
 			groupBy,
+			sortBy,
 		} = this.state;
 		const reviewList = this.groupReviews(groupBy,
-			this.filterByStars(
+			this.sortReviews(sortBy, this.filterByStars(
 				this.filterBySearch(
 					originalList,
 					searchKey
 				),
 				rating
-			)
+			))
 		);
 		this.setState({
 			reviewList,
@@ -131,8 +133,8 @@ class App extends Component {
 									onChange={e => this.handleChange('sortBy', e.target.value)}
 								>
 									<option value="">Order By</option>
-									<option value="day">Asc</option>
-									<option value="week">Desc</option>
+									<option value="asc">Asc</option>
+									<option value="desc">Desc</option>
 								</select>
 							</div>
 						</div>
