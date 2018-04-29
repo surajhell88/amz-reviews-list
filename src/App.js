@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import moment from 'moment';
+import InfiniteScroll from 'react-infinite-scroller';
 
 import StartRating from "./components/StarRating";
 import ReviewList from "./components/ReviewList";
@@ -15,7 +16,9 @@ class App extends Component {
 		groupBy: '',
 		sortBy: '',
 		rating: 0,
+		page: 1,
 		fetchingReviews: false,
+		hasMore: true,
 		originalList: [],
 		reviewList: []
 	}
@@ -51,7 +54,7 @@ class App extends Component {
 				return list;
 		}
 	}
-	sortReviews = (sortBy, list) => _.orderBy(list, ['reviewCreated'], sortBy)
+	sortReviews = (sortBy, list) => sortBy ? _.orderBy(list, ['reviewCreated'], sortBy) : list
 	filterReviews = () => {
 		const {
 			searchKey,
@@ -73,19 +76,23 @@ class App extends Component {
 			reviewList,
 		});
 	}
-	componentDidMount() {
+	fetchReviews = () => {
+		if (this.state.fetchingReviews) return;
 		this.setState({
 			fetchingReviews: true,
 		}, () => {
-			callApi("/reviews/1").then(res => {
-				console.log(res.data.reviews); // eslint-disable-line
+			callApi(`/reviews/${this.state.page}`).then(res => {
 				this.setState({
-					fetchingReviews: false,
-					reviewList: res.data.reviews,
-					originalList: res.data.reviews
-				});
+					page: this.state.page + 1,
+					originalList: this.state.originalList.concat(res.data.reviews),
+					hasMore: res.data.hasMore,
+					fetchingReviews: false
+				}, () => this.filterReviews());
 			});
 		});
+	}
+	componentDidMount() {
+		this.fetchReviews();
 	}
 	render() {
 		const {
@@ -93,8 +100,7 @@ class App extends Component {
 			groupBy,
 			sortBy,
 			rating,
-			reviewList,
-			fetchingReviews
+			reviewList
 		} = this.state;
 		return (
 			<div className="App">
@@ -147,13 +153,17 @@ class App extends Component {
 						</div>
 					</div>
 					<div className="List-Container">
-						{
-							fetchingReviews ?
-								<h4 className="Fetching-Reviews">
-									Fetching Reviews...
-								</h4> :
-								<ReviewList listData={reviewList} />
-						}
+						<InfiniteScroll
+							pageStart={1}
+							initialLoad={false}
+							loadMore={this.fetchReviews}
+							hasMore={this.state.hasMore}
+							loader={<h4 className="Fetching-Reviews" key="0">
+								Fetching More...
+							</h4>}
+						>
+							<ReviewList listData={reviewList} />
+						</InfiniteScroll>
 					</div>
 				</div>
 			</div>
