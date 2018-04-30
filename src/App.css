@@ -49,3 +49,30 @@
 	color: gray;
 	text-align: center;
 }
+
+@media only screen and (max-width: 768px) {
+  	/* For mobile phones: */
+	.Container {
+    	width: 95%;
+  	}
+
+  	.Review-Container {
+  		padding: 12px;
+  	}
+
+  	.Review-Product-Title {
+  		width: 100px;
+  	}
+
+  	.Mr-10 {
+  		margin-right: 6px;
+	}
+
+	.Mr-20 {
+	  margin-right: 6px;
+	}
+
+	.Mr-40 {
+	  margin-right: 6px;
+	}
+}
